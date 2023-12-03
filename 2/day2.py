@@ -45,11 +45,6 @@ print(f"Part 1 - Sum - {sum}")
 
 ### PART 2 ###
 
-games = {}
-
-for i in range(len(input)):
-    games[i + 1] = convert_game_max(input[i])
-
 sum = 0
 
 for game,cubes in games.items():
