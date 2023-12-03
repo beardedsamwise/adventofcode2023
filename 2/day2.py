@@ -15,7 +15,7 @@ def split_line(line):
     del line[0:2]
     return line
 
-def create_dict_from_input(line):
+def convert_game_max(line):
     game = {
     "red" : 0,
     "green": 0,
@@ -33,12 +33,26 @@ def create_dict_from_input(line):
 games = {}
 
 for i in range(len(input)):
-    games[i + 1] = create_dict_from_input(input[i])
+    games[i + 1] = convert_game_max(input[i])
 
 sum = 0
 
 for game,cubes in games.items():
     if (max_cubes["blue"] >= cubes["blue"]) and (max_cubes["red"] >= cubes["red"]) and (max_cubes["green"] >= cubes["green"]):
         sum += game
-        
-print(sum)
+
+print(f"Part 1 - Sum - {sum}")
+
+### PART 2 ###
+
+games = {}
+
+for i in range(len(input)):
+    games[i + 1] = convert_game_max(input[i])
+
+sum = 0
+
+for game,cubes in games.items():
+    sum += cubes["red"] * cubes["blue"] * cubes["green"]
+
+print(f"Part 2 - Sum - {sum}")
