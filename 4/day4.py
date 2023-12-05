@@ -2,28 +2,56 @@
 with open('input.txt') as f:
     input = [line.rstrip('\n') for line in f]
 
+WIN_CARD_NUM = 5
+
 # remove game id from line and split string to list
 def split_line(line):
     line = line.split()
     del line[0:2]
     return line
 
-for i in range(len(input)):
-    input[i] = split_line(input[i])
-
-total_score = 0
-
-# process each line of cards
-for line in input:
-    winning_cards = line[0:10]
-    my_cards = line[11:]
+# function to tally card score
+def card_score(card):
+    winning_cards = card[0:WIN_CARD_NUM]
+    my_cards = card[WIN_CARD_NUM + 1:]
     card_score = 0
     for card in my_cards:
         if card in winning_cards and card_score == 0:
             card_score += 1
         elif card in winning_cards:
             card_score = card_score * 2
-    total_score += card_score
+    return card_score
+
+def card_wins(card):
+    winning_cards = card[0:WIN_CARD_NUM]
+    my_cards = card[WIN_CARD_NUM + 1:]
+    card_wins = 0
+    for card in my_cards:
+        if card in winning_cards:
+            card_wins += 1
+    return card_wins
+
+# convert cards to list of lists 
+for i in range(len(input)):
+    input[i] = split_line(input[i])
+
+# part 1
+# process each line of cards
+total_score = 0
+
+for card in input:
+    total_score += card_score(card)
 
 print(f"Part 1 - Total Score: {total_score}")
 
+# part 2
+# figure out which cards have wins to tally scores
+winning_cards_list = []
+
+for i in range(len(input)):
+    winning_cards = card_wins(input[i])
+    print(f"cards won: {winning_cards} - row {i}")
+    for j in range(i + 1, i + winning_cards + 1):
+        winning_cards_list.append(j)
+
+print(winning_cards_list)
