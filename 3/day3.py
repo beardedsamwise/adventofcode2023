@@ -1,4 +1,5 @@
 import re
+import numpy 
 
 with open('input.txt') as f:
     input = [line.rstrip('\n') for line in f]
@@ -87,17 +88,40 @@ for row in range(len(schematic_matrix)):
 results = []
 
 for coord in symbol_coords:
-    print(coord)
     if search_left(coord[0], coord[1], schematic_matrix):
         results.append(search_left(coord[0], coord[1], schematic_matrix))
     if search_right(coord[0], coord[1], schematic_matrix):
         results.append(search_right(coord[0], coord[1], schematic_matrix))
-
     if search_above_below(coord[0], coord[1], schematic_matrix):
         for each in search_above_below(coord[0], coord[1], schematic_matrix):
             results.append(each)
 
-print(results)
-print(sum(results))
-    
-    
+print(f"Part 1 - {sum(results)}")
+
+ ### PART 2 ###
+
+SPECIAL_CHARACTERS = "*"
+
+gear_coords = []
+
+for row in range(len(schematic_matrix)):
+    for column in range(len(schematic_matrix[row])):
+        if schematic_matrix[row][column] in SPECIAL_CHARACTERS:
+            # print(schematic_matrix[row][column])
+            gear_coords.append([row, column])
+
+gear_ratios = []
+
+for coord in gear_coords:
+    gears = []
+    if search_left(coord[0], coord[1], schematic_matrix):
+        gears.append(search_left(coord[0], coord[1], schematic_matrix))
+    if search_right(coord[0], coord[1], schematic_matrix):
+        gears.append(search_right(coord[0], coord[1], schematic_matrix))
+    if search_above_below(coord[0], coord[1], schematic_matrix):
+        for each in search_above_below(coord[0], coord[1], schematic_matrix):
+            gears.append(each)
+    if len(gears) > 1:
+        gear_ratios.append(numpy.prod(gears))
+
+print(f"Part 2 - {sum(gear_ratios)}")
