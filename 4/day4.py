@@ -48,10 +48,32 @@ print(f"Part 1 - Total Score: {total_score}")
 # figure out which cards have wins to tally scores
 winning_cards_list = []
 
+total_cards_won = 0
+
+# while loop through all winning cards - if winning card is found append card to winning cards list
+
 for i in range(len(input)):
     winning_cards = card_wins(input[i])
-    print(f"cards won: {winning_cards} - row {i}")
-    for j in range(i + 1, i + winning_cards + 1):
-        winning_cards_list.append(j)
+    print(f"cards won: {winning_cards} - card {i + 1}")
+    if winning_cards:
+        for j in range(i + 1, i + winning_cards + 1):
+            winning_cards_list.append(j)
+            total_cards_won += 1
 
+print(winning_cards_list)
+print(total_cards_won)
+
+while winning_cards_list:
+    card = winning_cards_list.pop(0)
+    print(f"pop card: {card + 1}")
+    winning_cards = card_wins(input[card])
+    print(f"cards won: {winning_cards}")
+    if winning_cards:
+        for j in range(card + 1, card + winning_cards + 1):
+            print(f"added card {j + 1}")
+            winning_cards_list.append(j)
+            total_cards_won += 1
+    print(winning_cards_list)
+
+print(total_cards_won)
 print(winning_cards_list)
