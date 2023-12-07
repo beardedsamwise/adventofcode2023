@@ -19,4 +19,3 @@ for line in input[2:]:
     else: # append list to dict 
         map[key].append(line.split()) 
 
-print(map)
