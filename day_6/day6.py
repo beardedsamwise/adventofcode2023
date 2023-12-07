@@ -1,8 +1,7 @@
 import numpy 
 
-# load input.txt
-with open('input.txt') as f:
-    input = [line.rstrip('\n') for line in f]
+from aocd import get_data
+input = get_data(day=6, year=2023).splitlines()
 
 ### PART 1 ###
 

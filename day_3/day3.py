@@ -1,8 +1,9 @@
 import re
 import numpy 
 
-with open('input.txt') as f:
-    input = [line.rstrip('\n') for line in f]
+# load input
+from aocd import get_data
+input = get_data(day=3, year=2023).splitlines()
 
 SPECIAL_CHARACTERS = "!@#$%^&*()-+?_=,<>/"
 

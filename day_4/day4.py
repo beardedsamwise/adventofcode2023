@@ -1,6 +1,6 @@
-# load input.txt
-with open('input.txt') as f:
-    input = [line.rstrip('\n') for line in f]
+# load input
+from aocd import get_data
+input = get_data(day=4, year=2023).splitlines()
 
 WIN_CARD_NUM = 10
 

@@ -1,6 +1,6 @@
-# load input.txt
-with open('input.txt') as f:
-    input = [line.rstrip('\n') for line in f]
+# load input
+from aocd import get_data
+input = get_data(day=5, year=2023).splitlines()
 
 # set seeds
 seeds = (input[0][7:]).split()
@@ -19,3 +19,4 @@ for line in input[2:]:
     else: # append list to dict 
         map[key].append(line.split()) 
 
+print(map)

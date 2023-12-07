@@ -1,8 +1,9 @@
 import re
 
+from aocd import get_data
+input = get_data(day=1, year=2023).splitlines()
+
 ### PART 1 ###
-with open('input.txt') as f:
-    input = [line.rstrip('\n') for line in f]
 
 calibration_values = []
 
@@ -30,9 +31,6 @@ conversion_table = {
     "eight" : 8,
     "nine" : 9
 }
-
-with open('input.txt') as f:
-    input = [line.rstrip('\n') for line in f]
 
 # take a line from the input file and extract all numbers (either numeric or alphanumeric)
 def clean_string(line):
